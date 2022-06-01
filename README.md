@@ -1,13 +1,11 @@
 # json-script-rule-jar
 
 #### 介绍
-{**以下是 Gitee 平台说明，您可以替换此简介**
-Gitee 是 OSCHINA 推出的基于 Git 的代码托管平台（同时支持 SVN）。专为开发者提供稳定、高效、安全的云端软件开发协作平台
-无论是个人、团队、或是企业，都能够用 Gitee 实现代码托管、项目管理、协作开发。企业项目请看 [https://gitee.com/enterprises](https://gitee.com/enterprises)}
+json script rule，是一个可以利用json脚本进行crud操作的插件，类似一款低码插件，依赖此插件可在前端请求时在请求体中用json按照指定规则进行描述便可做到免接口开发，也就是后端不需要写接口便能将数据直接返回给前端，目前插件支持可扩展定制规则，sql层支持函数，分组，逻辑和视图查询等等，可满足绝大部分的需要
+http://ying1dudu.gitee.io/json-script-rule-jar
 
 #### 软件架构
 软件架构说明
-
 
 #### 安装教程
 
