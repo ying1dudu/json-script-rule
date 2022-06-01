@@ -27,11 +27,33 @@ http://ying1dudu.gitee.io/json-script-rule-jar
 4.  新建 Pull Request
 
 
-#### 特技
+## Welcome to MarkdownPad 2 ##
 
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  Gitee 官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解 Gitee 上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是 Gitee 最有价值开源项目，是综合评定出的优秀开源项目
-5.  Gitee 官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  Gitee 封面人物是一档用来展示 Gitee 会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+**MarkdownPad** is a full-featured Markdown editor for Windows.
+
+### Built exclusively for Markdown ###
+
+Enjoy first-class Markdown support with easy access to  Markdown syntax and convenient keyboard shortcuts.
+
+Give them a try:
+
+- **Bold** (`Ctrl+B`) and *Italic* (`Ctrl+I`)
+- Quotes (`Ctrl+Q`)
+- Code blocks (`Ctrl+K`)
+- Headings 1, 2, 3 (`Ctrl+1`, `Ctrl+2`, `Ctrl+3`)
+- Lists (`Ctrl+U` and `Ctrl+Shift+O`)
+
+### See your changes instantly with LivePreview ###
+
+Don't guess if your [hyperlink syntax](http://markdownpad.com) is correct; LivePreview will show you exactly what your document looks like every time you press a key.
+
+### Make it your own ###
+
+Fonts, color schemes, layouts and stylesheets are all 100% customizable so you can turn MarkdownPad into your perfect editor.
+
+### A robust editor for advanced Markdown users ###
+
+MarkdownPad supports multiple Markdown processing engines, including standard Markdown, Markdown Extra (with Table support) and GitHub Flavored Markdown.
+
+With a tabbed document interface, PDF export, a built-in image uploader, session management, spell check, auto-save, syntax highlighting and a built-in CSS management interface, there's no limit to what you can do with MarkdownPad.
+
