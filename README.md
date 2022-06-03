@@ -41,13 +41,13 @@
 	<version>0.0.1-SNAPSHOT</version>
 </dependency>
 ```  
-目前版本仍处于测试阶段，但基本功能已经稳定
+目前版本仍处于测试阶段，但基本功能已经稳定  
 2.  在resource目录下创建META-INF文件夹，在其中创建spring.factories文件
 (这里是按照spring创建starter的步骤创建插件的starter)  
-在文件内容中增加一行代码:**org.springframework.boot.autoconfigure.EnableAutoConfiguration=\edi.rule.config.JSRuleStarterConfig**
+在文件内容中增加一行代码:**org.springframework.boot.autoconfigure.EnableAutoConfiguration=\edi.rule.config.JSRuleStarterConfig**  
 3.  在resource目录下创建rule.properties文件，这个是配置文件，需要配置po类的包所在的位置 
 js.rule.mapping.classes.location=test.po  
-此处的test.po类似于mybatis中的po类，**是与数据库表进行关联映射的类包的位置**
+此处的test.po类似于mybatis中的po类，**是与数据库表进行关联映射的类包的位置**  
 #### 使用说明
 由于插件的功能比较多，此处只简单说明最基本的用法，之后将会推出更为详细的文档说明和博客  
 1. 配置po类，示例如下  
@@ -96,6 +96,7 @@ fk：设置外键，这里的值对应的是**类的名字**,其路径是在 **j
 fieldName：表示对应数据库的表字段名,如果没有配置则默认认为java字段名即为数据库表字段名  
 alias：表示数据库表字段的别名，如果设置了则会以别名的形式返回给前端  
 **备注**：配置类中不需要get/set方法  
+
 2. 启动本地项目，用postman进行测试  
 <pre>http://localhost:8012/api/js/rule/engine/start</pre>
 （注：/api是context-path配置，没有则不写，后面的/js/rule/engine/start是固定的路径，也可以自定义，参考配置文件属性）  
@@ -106,6 +107,7 @@ alias：表示数据库表字段的别名，如果设置了则会以别名的形
 18:05:18.008 [main] INFO  e.r.f.s.s.JSRuleInit - [printInfomation,69] - mappingClasses=test.po
 18:05:19.794 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8012"]
 </pre>
+
 3. 通过postman请求接口，json如下  
 <pre>
 {
