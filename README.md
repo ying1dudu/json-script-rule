@@ -2,9 +2,10 @@
 
 #### 介绍
 **json script rule**，是一个可以直接利用json脚本进行后台crud操作的插件，类似一款低码插件，依赖此插件可在前端请求时在其请求体中使用json格式并按照指定规则写法进行描述便可做到免后台接口开发，也就是后端不需要再写任何接口便能将数据直接返回给前端，高效开发项目。
-目前插件支持 **mysql,postgresql(包括kingbase),oracle** 数据库  
+目前插件支持 **mysql,postgresql(包括kingbase),oracle（oracle尚未详测）** 数据库  
 此外支持 **可扩展定制规则，sql层支持函数，分组，关联，逻辑和视图查询**等等，可满足绝大部分的需要  
-目前只有我一个人做架构，设计，开发，测试，因此如果有未想到的功能请及时与我联系或留言
+目前只有我一个人做架构，设计，开发，测试，能力有限，如有未尽事宜请留言
+插件地址：https://gitee.com/ying1dudu/json-script-rule-jar.git
 ##### 优点
 1. 可以不用写接口，直接通过引擎解析json进而将数据返回给前端
 2. 项目上线后可以直接通过更改前端请求的json参数进行功能层面的调整，无需改接口，打包，部署等
@@ -31,27 +32,30 @@
 **mysql.connector versoin 8.0.29**  
 **druid-spring-boot-starter version 1.1.22**  
 **lombok-maven-plugin version 1.18.12.0**
+![maven.png](https://upload-images.jianshu.io/upload_images/28173801-54f3c841701fdd4b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
 #### 安装教程
 
 1.  在你的项目中添加此插件的jar包，外部jar包或将jar包放入maven本地仓库中并引用依赖
 ```
 <dependency>
 	<groupId>edi.zs</groupId>
-	<artifactId>rule</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<artifactId>json-script-rule-spring-boot-starter</artifactId>
+	<version>1.0</version>
 </dependency>
-```  
-目前版本仍处于测试阶段，但基本功能已经稳定  
+```   
 2.  在resource目录下创建META-INF文件夹，在其中创建spring.factories文件
 (这里是按照spring创建starter的步骤创建插件的starter)  
 在文件内容中增加一行代码:**org.springframework.boot.autoconfigure.EnableAutoConfiguration=\edi.rule.config.JSRuleStarterConfig**  
-3.  在resource目录下创建rule.properties文件，这个是配置文件，需要配置po类的包所在的位置 
+3.  在resource目录下创建rule.properties文件，这个是配置文件，如果你采用的是插件中默认的json处理器则需要在这个配置文件中配置po类的包所在的路径(相对路径) ，如图
 js.rule.mapping.classes.location=test.po  
-此处的test.po类似于mybatis中的po类，**是与数据库表进行关联映射的类包的位置**  
+![po配置.png](https://upload-images.jianshu.io/upload_images/28173801-5eb2a8af13a023c1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+此处的test.po包下面的类类似于mybatis中的po类，**是与数据库表进行关联映射的类包的位置**，你也可以在原有的po类对象中使用注解JSRuleRelationTabe注解进行标识(前提是要指定上面所示的路径)  
 #### 使用说明
-由于插件的功能比较多，此处只简单说明最基本的用法，之后将会推出更为详细的文档说明和博客  
+由于插件的功能比较多，此处只简单说明最基本的用法，后面将会推出更为详细的文档说明  
 1. 配置po类，示例如下  
-<pre>
+```
 @JSRuleRelationTable(tableName= "zs_test")
 @Data
 public class ZsTestPO {
@@ -73,8 +77,8 @@ public class ZsTestPO {
 	@JSRuleRelationField(fieldName= "qian")
 	private String qian;
 }
-</pre>
-<pre>
+```
+```
 @JSRuleRelationTable(tableName="zs_test_son1")
 public class ZsTestUpdate {
 
@@ -89,27 +93,29 @@ public class ZsTestUpdate {
 	@JSRuleRelationField(fieldName= "zs_test_son2_id")
 	public String zs_test_son2_id;
 }
-</pre>
+```
+这里的类名字是随意起的，你可以理解ZsTestPO是第一个表关联的类，ZsTestUpdate 是第二个表关联的类
 ####参数说明：  
 pk：设置主键  
 fk：设置外键，这里的值对应的是**类的名字**,其路径是在 **js.rule.mapping.classes.location** 属性所配置的路径下的位置开始，如果有包名则加上包名(**位置依旧以属性配置的路径开始**)，例如xx.ZsTestPO  
 fieldName：表示对应数据库的表字段名,如果没有配置则默认认为java字段名即为数据库表字段名  
 alias：表示数据库表字段的别名，如果设置了则会以别名的形式返回给前端  
-**备注**：配置类中不需要get/set方法  
+**注意**：前端以及后端所有的操作规则均面向java对象及字段，对于字段上的关联数据库的注解并不相关
+**提示**：配置类中的get/set方法并不是必须存在的  
 
 2. 启动本地项目，用postman进行测试  
-<pre>http://localhost:8012/api/js/rule/engine/start</pre>
-（注：/api是context-path配置，没有则不写，后面的/js/rule/engine/start是固定的路径，也可以自定义，参考配置文件属性）  
-<pre>
+```http://localhost:8012/api/js/rule/engine/start```
+（注：/api是context-path配置，没有则不写，后面的/js/rule/engine/start是固定的路径，也可以自定义，参考配置文件属性，后面将会说明）  
+```
 18:05:17.802 [main] INFO  e.r.f.s.s.JSRuleCache - [initCache,75] - init JSRuleCache
 18:05:18.007 [main] INFO  e.r.f.s.s.JSRuleInit - [printInfomation,67] - IJSRuleProcessor=edi.rule.processor.JSRuleJsonProcessor
 18:05:18.007 [main] INFO  e.r.f.s.s.JSRuleInit - [printInfomation,68] - mapperType=edi.rule.frame.mybatis.dao.MapperForMysql
 18:05:18.008 [main] INFO  e.r.f.s.s.JSRuleInit - [printInfomation,69] - mappingClasses=test.po
 18:05:19.794 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8012"]
-</pre>
+```
 
 3. 通过postman请求接口，json如下  
-<pre>
+```
 {
     "rule": {
         "name": "zssz",
@@ -126,8 +132,15 @@ alias：表示数据库表字段的别名，如果设置了则会以别名的形
         ]
     }
 }
-</pre>
-<pre>
+```
+####参数说明：  
+
+1.  relations：表示关联的类的相关信息
+2.  name：rule的name以及action的name均为唯一标识
+3.  get：表示此次操作为查询动作
+
+返回结果如下
+```
 {
     "code": "200",
     "msg": "操作成功",
@@ -166,11 +179,7 @@ alias：表示数据库表字段的别名，如果设置了则会以别名的形
     },
     "log": null
 }
-</pre>
-####参数说明：  
+```
 
-1.  relations：表示关联的类的相关信息
-2.  name：rule的name以及action的name均为唯一标识
-3.  get：表示此次操作为查询动作
 
 
