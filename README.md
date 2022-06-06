@@ -5,7 +5,8 @@
 目前插件支持 **mysql,postgresql(包括kingbase),oracle（oracle尚未详测）** 数据库  
 此外支持 **可扩展定制规则，sql层支持函数，分组，关联，逻辑和视图查询**等等，可满足绝大部分的需要  
 目前只有我一个人做架构，设计，开发，测试，能力有限，如有未尽事宜请留言
-插件地址：https://gitee.com/ying1dudu/json-script-rule-jar.git
+更多详细的操作说明请移驾我的简书博客
+博客地址：https://www.jianshu.com/u/9d71fe6dcbde
 ##### 优点
 1. 可以不用写接口，直接通过引擎解析json进而将数据返回给前端
 2. 项目上线后可以直接通过更改前端请求的json参数进行功能层面的调整，无需改接口，打包，部署等
