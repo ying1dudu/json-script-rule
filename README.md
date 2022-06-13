@@ -35,9 +35,9 @@
 ![maven.png](https://upload-images.jianshu.io/upload_images/28173801-54f3c841701fdd4b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 **注意：**类似mysql配置数据源的时候，由于版本的差异，早期的driverClassName为com.mysql.jdbc.Driver，这里引用的是8.x的版本，所以driverClassName应为com.mysql.cj.jdbc.Driver，需注意数据源的配置
 #### 安装教程
-1.  在你的项目中添加此插件的jar包，外部jar包或将jar包放入maven本地仓库中并引用依赖
-本地路径：**\edi\zs\rule\0.0.1-SNAPSHOT\rule-0.0.1-SNAPSHOT.jar**
-插件地址：https://gitee.com/ying1dudu/json-script-rule-jar.git
+1.  在你的项目中添加此插件的jar包，外部jar包或将jar包放入maven本地仓库中并引用依赖  
+本地路径：**\edi\zs\rule\0.0.1-SNAPSHOT\rule-0.0.1-SNAPSHOT.jar**  
+插件地址：https://gitee.com/ying1dudu/json-script-rule-jar.git  
 ```
 <dependency>
   <groupId>edi.zs</groupId>
