@@ -3,8 +3,8 @@
 #### 介绍
 **json script rule**，是一个可以直接使用json脚本进行后台逻辑操作的插件（jar包），类似一款低码插件包，依赖此插件可在前端请求时在其请求体中使用json格式并按照指定规则或自定义规则进行操作便可达到动态开发接口的目的，这些操作通常是一些crud的操作，通过插件的引擎解析json最终将动态数据返回给前端，只要懂简单的sql便可进行项目的开发，即便你是一个前端的程序员，此外通过插件包还可以提高代码的复用减少程序的代码量，高效开发项目，其优势下面将会提到。
 目前插件支持 **mysql,postgresql(包括kingbase),oracle（oracle尚未详测）** 数据库  
-此外支持 **可扩展定制规则，sql层支持函数，分组，关联，逻辑和视图查询**等等，可满足绝大部分的场景需要，后续将会上传maven，暂时需要下载插件包支持  
-博客地址：https://www.jianshu.com/u/9d71fe6dcbde
+此外支持 **可扩展定制规则，sql层支持函数，分组，关联，逻辑和视图查询**等等，可满足绝大部分的场景需要，后续将会上传maven，暂时需要下载插件包支持
+插件地址：https://gitee.com/ying1dudu/json-script-rule-jar.git
 ##### 优点
 1. 完全不需要写接口，只要你懂简单的json格式，sql语法，便可以通过引擎解析json进而将数据返回给前端，即使你不是一个后端开发者也可以调出数据
 2. 项目上线后可以直接通过更改前端请求的json主体进行功能层面的调整，无需改接口，打包，部署等，非常的灵活
@@ -32,12 +32,12 @@
 **mysql.connector versoin 8.0.29**  
 **druid-spring-boot-starter version 1.1.22**  
 **lombok-maven-plugin version 1.18.12.0**
-![maven.png](https://upload-images.jianshu.io/upload_images/28173801-54f3c841701fdd4b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![maven.png](https://upload-images.jianshu.io/upload_images/28173801-54f3c841701fdd4b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)  
 **注意：**类似mysql配置数据源的时候，由于版本的差异，早期的driverClassName为com.mysql.jdbc.Driver，这里引用的是8.x的版本，所以driverClassName应为com.mysql.cj.jdbc.Driver，需注意数据源的配置
 #### 安装教程
-1.  在你的项目中添加此插件的jar包，外部jar包或将jar包放入maven本地仓库中并引用依赖  
-本地路径：**\edi\zs\rule\0.0.1-SNAPSHOT\rule-0.0.1-SNAPSHOT.jar**  
-插件地址：https://gitee.com/ying1dudu/json-script-rule-jar.git  
+1.  在你的项目中添加此插件的jar包，外部jar包或将jar包放入maven本地仓库中并引用依赖
+本地路径：**\edi\zs\rule\0.0.1-SNAPSHOT\rule-0.0.1-SNAPSHOT.jar**
+插件地址：https://gitee.com/ying1dudu/json-script-rule-jar.git
 ```
 <dependency>
   <groupId>edi.zs</groupId>
@@ -60,7 +60,7 @@
   <artifactId>kingbase8</artifactId>
 </dependency>
 ```
-这里为了支持kingbase（postgresql语法），还需要下载kingbase的jdbc包，我会在插件地址中预留这个jar包，下载好放到本地仓库的对应位置即可（com\kingbase\kingbase8\8.6.0\kingbase8-8.6.0.jar）
+这里为了支持kingbase（postgresql语法），还需要下载kingbase的jdbc包，我会在插件地址中预留这个jar包，下载好放到本地仓库的对应位置即可（com\kingbase\kingbase8\8.6.0\kingbase8-8.6.0.jar）  
 2.  在resource目录下创建META-INF文件夹，在其中创建spring.factories文件
 (这里是按照spring创建starter的步骤创建插件的starter)  
 在文件内容中增加一行代码:**org.springframework.boot.autoconfigure.EnableAutoConfiguration=\edi.rule.config.JSRuleStarterConfig**  
@@ -115,7 +115,7 @@ public class ZsTestUpdate {
 	public String zs_test_son2_id;
 }
 ```
-这里的类名字是随意起的，你可以理解ZsTestPO是第一个表关联的类，ZsTestUpdate 是第二个表关联的类
+这里的类名字是随意起的，你可以理解ZsTestPO是第一个表关联的类，ZsTestUpdate 是第二个表关联的类  
 ####参数说明：  
 pk：设置主键（目前仅支持单主键，不支持复合主键，也不提议使用复合主键）  
 fk：设置外键，这里的值对应的是**类的名字**,其路径是在 **js.rule.mapping.classes.location** 属性所配置的路径下的位置开始，如果有包名则加上包名(**位置依旧以属性配置的路径开始**)，例如xx.ZsTestPO  
