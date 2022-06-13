@@ -166,7 +166,6 @@ alias：表示数据库表字段的别名，如果设置了则会以别名的形
     "code": "200",
     "msg": "操作成功",
     "result": {
-        "num": 0,
         "engineResult": {
             "action->test_db": {
                 "pageNum": 1,
