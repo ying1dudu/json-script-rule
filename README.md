@@ -56,11 +56,15 @@
   <artifactId>mysql-connector-java</artifactId>
 </dependency>
 <dependency>
+  <groupId>org.postgresql</groupId>
+  <artifactId>postgresql</artifactId>
+</dependency>
+<dependency>
   <groupId>com.kingbase</groupId>
   <artifactId>kingbase8</artifactId>
 </dependency>
 ```
-这里为了支持kingbase（postgresql语法），还需要下载kingbase的jdbc包，我会在插件地址中预留这个jar包，下载好放到本地仓库的对应位置即可（com\kingbase\kingbase8\8.6.0\kingbase8-8.6.0.jar）  
+如果你是kingbase数据库（**postgresql语法，因此配置文件中数据库类型选择postgresql即可**），还需要下载kingbase的jdbc包，我会在插件地址中预留这个jar包，下载好放到本地仓库的对应位置即可（com\kingbase\kingbase8\8.6.0\kingbase8-8.6.0.jar）  
 2.  在resource目录下创建META-INF文件夹，在其中创建spring.factories文件
 (这里是按照spring创建starter的步骤创建插件的starter)  
 在文件内容中增加一行代码:**org.springframework.boot.autoconfigure.EnableAutoConfiguration=\edi.rule.config.JSRuleStarterConfig**  
@@ -117,10 +121,11 @@ public class ZsTestUpdate {
 ```
 这里的类名字是随意起的，你可以理解ZsTestPO是第一个表关联的类，ZsTestUpdate 是第二个表关联的类  
 ####参数说明：  
-pk：设置主键（目前仅支持单主键，不支持复合主键，也不提议使用复合主键）  
-fk：设置外键，这里的值对应的是**类的名字**,其路径是在 **js.rule.mapping.classes.location** 属性所配置的路径下的位置开始，如果有包名则加上包名(**位置依旧以属性配置的路径开始**)，例如xx.ZsTestPO  
-fieldName：表示对应数据库的表字段名,如果没有配置则默认认为java字段名即为数据库表字段名  
-alias：表示数据库表字段的别名，如果设置了则会以别名的形式返回给前端  
+- **pk：**设置主键（目前仅支持单主键，不支持复合主键，也不提议使用复合主键）  
+- **fk：**设置外键，这里的值对应的是**类的名字**,其路径是在 **js.rule.mapping.classes.location** 属性所配置的路径下的位置开始，如果有包名则加上包名(**位置依旧以属性配置的路径开始**)，例如xx.ZsTestPO  
+- **fieldName：**表示对应数据库的表字段名,如果没有配置则默认认为java字段名即为数据库表字段名  
+- **alias：**表示数据库表字段的别名，如果设置了则会以别名的形式返回给前端  
+
 **注意**：前端以及后端所有的操作规则均面向java对象及字段，对于字段上的关联数据库的注解并不相关
 **提示**：配置类中的get/set方法并不是必须存在的  
 
