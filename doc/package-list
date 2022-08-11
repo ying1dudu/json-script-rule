@@ -1,0 +1,6 @@
+edi.rule.abstracts
+edi.rule.annotation
+edi.rule.interfaces.base
+edi.rule.interfaces.crud
+edi.rule.interfaces.processor
+edi.rule.model
