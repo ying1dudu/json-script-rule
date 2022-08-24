@@ -19,10 +19,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"rule\": {\n        \"name\": \"sss\",\n        \"actions\": [\n        \t{\n        \t\t\"name\": \"poAction\",\n        \t\t\"relations\": {\"classNames\":[\"ZsTestPO\"]},\n        \t\t\"get\": {\n        \t\t\t\"fields\":[\"name\"],\n        \t\t\t\"matches\":{\"gt\":{\"ZsTestPO.bonus\":19},\"lteq\":{\"ZsTestPO.salary\":100.5}}\n        \t\t}\n        \t}\n        ]\n    }\n}"
+					"raw": "{\n\t\"params\":{\n\t\t\"limit\":\"no\"\n\t},\n    \"rule\": {\n        \"name\": \"sss\",\n        \"actions\": [\n        \t{\n        \t\t\"name\": \"poAction\",\n        \t\t\"get\": {\n        \t\t\t\"fields\":[\"name\"],\n        \t\t\t\"classes\":[\"ZsTestPO\"],\n        \t\t\t\"relations\": {},\n        \t\t\t\"matches\":{\"gt\":{\"ZsTestPO.bonus\":19},\"lteq\":{\"ZsTestPO.salary\":100.5}}\n        \t\t}\n        \t}\n        ]\n    }\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8014/api/json/rule/engine/start",
+					"raw": "http://localhost:8014/api/json/rule/start",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -32,7 +32,6 @@
 						"api",
 						"json",
 						"rule",
-						"engine",
 						"start"
 					]
 				}
@@ -58,7 +57,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"rule\":{\n\t\t\"name\": \"addtest\",\n\t\t\"actions\":[\n\t\t\t{\n\t\t\t\t\"name\":\"addaction\",\n\t\t\t\t\"add\":{\n\t\t\t\t\t\"className\":\"ZsTestPO\",\n\t\t\t\t\t\"uuid\":[\"id\",\"remark\"],\n\t\t\t\t\t\"defaults\":{\"test_field\":\"nnnnnn\"},\n\t\t\t\t\t\"required\":[\"test_field\",\"create_date\"],\n\t\t\t\t\t\"ternary\":[\"test_field==oiu?tiu:ppp\"],\n\t\t\t\t\t\"calculate\":[\"salary=-<salary>+0.5*(-10*10)\",\"bonus=<bonus>-100\"],\n\t\t\t\t\t\"datas\":[\n\t\t\t\t\t\t{\"name\":\"ccc\",\"salary\":22.50,\"bonus\":\"110\",\"birthDay\":\"2021/10/08\",\"create_date\":\"1922-10-08\"},\n\t\t\t\t\t\t{\"name\":\"mmm\",\"salary\":\"11.50\",\"bonus\":120,\"birthDay\":\"2021-02-03\",\"create_date\":\"1922-02-03\"}]\n\t\t\t\t}\n\t\t\t}\n\t\t]\n\t}\n}"
+					"raw": "{\n\t\"rule\":{\n\t\t\"name\": \"addtest\",\n\t\t\"actions\":[\n\t\t\t{\n\t\t\t\t\"name\":\"addaction\",\n\t\t\t\t\"add\":{\n\t\t\t\t\t\"className\":\"ZsTestPO\",\n\t\t\t\t\t\"uuid\":[\"id\",\"remark\"],\n\t\t\t\t\t\"defaults\":{\"test_field\":\"nnnnnn\"},\n\t\t\t\t\t\"required\":[\"test_field\",\"create_date\"],\n\t\t\t\t\t\"ternary\":[\"test_field==oiu?tiu:ppp\"],\n\t\t\t\t\t\"calculate\":[\"salary=-<salary>+0.5*(-10*10)\",\"bonus=<bonus>-100\"],\n\t\t\t\t\t\"datas\":[\n\t\t\t\t\t\t{\"name\":\"ccc\",\"salary\":22.50,\"bonus\":\"110\",\"birthDay\":\"2021/10/08\",\"create_date\":\"1922-10-08\"},\n\t\t\t\t\t\t{\"name\":\"mmm\",\"salary\":\"11.50\",\"bonus\":120,\"birthDay\":\"2021-02-03\",\"create_date\":\"1922-02-03\"}],\n\t\t\t\t\t\"add\":{\n\t\t\t\t\t\t\"className\":\"ZsTestPO\",\n\t\t\t\t\t\t\"relations\": {\n\t\t\t\t\t\t\t\"fk\":\"id:id\"\n\t\t\t\t\t\t},\n\t\t\t\t\t\t\"uuid\":[\"id\",\"remark\"],\n\t\t\t\t\t\t\"defaults\":{\"test_field\":\"nnnnnn\"},\n\t\t\t\t\t\t\"required\":[\"test_field\",\"create_date\"],\n\t\t\t\t\t\t\"ternary\":[\"test_field==oiu?tiu:ppp\"],\n\t\t\t\t\t\t\"calculate\":[\"salary=-<salary>+0.5*(-10*10)\",\"bonus=<bonus>-100\"],\n\t\t\t\t\t\t\"datas\":[\n\t\t\t\t\t\t\t{\"name\":\"ccc\",\"salary\":22.50,\"bonus\":\"110\",\"birthDay\":\"2021/10/08\",\"create_date\":\"1922-10-08\"},\n\t\t\t\t\t\t\t{\"name\":\"mmm\",\"salary\":\"11.50\",\"bonus\":120,\"birthDay\":\"2021-02-03\",\"create_date\":\"1922-02-03\"}]\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t]\n\t}\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8014/api/json/rule/start",
@@ -351,7 +350,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"rule\": {\n        \"actions\": [\n        \t{\n        \t\t\"name\": \"asd\",\n        \t\t\"get\": {\n        \t\t\t\"classes\":[\"ZsTestPO\"],\n        \t\t\t\"matches\":{\n        \t\t\t\t\"equal\":{\"id\":[\"1\"]}\n        \t\t\t}\n        \t\t}\n        \t}\n        ]\n    }\n}"
+					"raw": "{\n\t\"params\":{\n\t\t\"limit\":\"no\"\n\t},\n    \"rule\": {\n        \"actions\": [\n        \t{\n        \t\t\"name\": \"asd\",\n        \t\t\"get\": {\n        \t\t\t\"classes\":[\"ZsTestPO\"],\n        \t\t\t\"matches\":{\n        \t\t\t\t\"equal\":{\"id\":[\"1\"]}\n        \t\t\t}\n        \t\t}\n        \t}\n        ]\n    }\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8014/api/json/rule/start",
@@ -389,7 +388,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"rule\": {\n        \"name\": \"export\",\n        \"actions\": [\n        \t{\n        \t\t\"name\":\"test_export\",\n        \t\t\"export\":{\n        \t\t\t\"word\":{\n        \t\t\t\t\"outFilePath\":\"D:/asddsa/laimi.docx\",\n\t\t\t\t\t\t\"fileName\":\"word导出一下试试\",\n\t\t\t\t\t\t\"relativePath\":\"/导出模板.docx\",\n\t\t\t\t\t\t\"data\":{\"suo\":\"联防大队\",\"sBillNo\":\"no.11232\",\"dCreatetime\":\"2020-10-21 10:11:11\",\"sRepairexcuseDesc\":\"不知道啥原因\"}\n\t\t\t\t\t},\n\t\t\t\t\t\"excel\":{\n\t\t\t\t\t\t\"fileName\":\"excel导出一下试试\",\n\t\t\t\t\t\t\"absolutePath\":\"D:/jar/导出模板.xlsx\",\n\t\t\t\t\t\t\"sheets\":[\n\t\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\t\"get\": {\n\t\t\t\t        \t\t\t\"classes\":[\"ZsImport\"],\n\t\t\t\t        \t\t\t\"page\":{\"pageSize\":0}\n\t\t\t\t        \t\t},\n\t\t\t\t\t\t\t\t\"template\":\"lanliya\",\n\t\t\t\t\t\t\t\t\"name\":\"sheetNameNo.1\",\n\t\t\t\t\t\t\t\t\"start\":5,\n\t\t\t\t\t\t\t\t\"params\":{\"asd\":\"2020-10-20 10:10:10\"}\n\t\t\t\t\t\t\t},{\n\t\t\t\t\t\t\t\t\"get\": {\n\t\t\t\t        \t\t\t\"classes\":[\"ZsImport2\"],\n\t\t\t\t        \t\t\t\"page\":{\"pageSize\":0}\n\t\t\t\t        \t\t},\n\t\t\t\t\t\t\t\t\"name\":\"sheetNameNo.2\",\n\t\t\t\t\t\t\t\t\"start\":4,\n\t\t\t\t\t\t\t\t\"params\":{\"asd\":\"2020-10-20 10:10:10\"}\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t]\n\t\t\t\t\t}\n\t\t\t\t}\n        \t}\n        ]\n    }\n}"
+					"raw": "{\n\t\"params\":{\"limit\":\"yes\"},\n    \"rule\": {\n        \"name\": \"export\",\n        \"actions\": [\n        \t{\n        \t\t\"name\":\"test_export\",\n        \t\t\"export\":{\n        \t\t\t\"word\":{\n        \t\t\t\t\"outFilePath\":\"D:/asddsa/laimi.docx\",\n\t\t\t\t\t\t\"fileName\":\"word导出一下试试\",\n\t\t\t\t\t\t\"relativePath\":\"/导出模板.docx\",\n\t\t\t\t\t\t\"data\":{\"suo\":\"联防大队\",\"sBillNo\":\"no.11232\",\"dCreatetime\":\"2020-10-21 10:11:11\",\"sRepairexcuseDesc\":\"不知道啥原因\"}\n\t\t\t\t\t},\n\t\t\t\t\t\"excel\":{\n\t\t\t\t\t\t\"fileName\":\"excel导出一下试试\",\n\t\t\t\t\t\t\"absolutePath\":\"D:/jar/导出模板.xlsx\",\n\t\t\t\t\t\t\"sheets\":[\n\t\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\t\"action\":{\n\t\t\t\t\t\t\t\t\t\"name\":\"asddsa\",\n\t\t\t\t\t\t\t\t\t\"get\": {\n\t\t\t\t\t\t\t\t\t\t\"ssTp\":[\"pigu\"],\n\t\t\t\t        \t\t\t    \"classes\":[\"ZsImport\"],\n\t\t\t\t        \t\t\t    \"page\":{\"pageSize\":0}\n\t\t\t\t        \t\t\t}\n\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\t\"template\":\"lanliya\",\n\t\t\t\t\t\t\t\t\"name\":\"sheetNameNo.1\",\n\t\t\t\t\t\t\t\t\"start\":5,\n\t\t\t\t\t\t\t\t\"params\":{\"asd\":\"2020-10-20 10:10:10\"}\n\t\t\t\t\t\t\t},{\n\t\t\t\t\t\t\t\t\"action\":{\n\t\t\t\t\t\t\t\t\t\"name\":\"asddsa\",\n\t\t\t\t\t\t\t\t\t\"get\": {\n\t\t\t\t        \t\t\t\"classes\":[\"ZsImport2\"],\n\t\t\t\t        \t\t\t\"page\":{\"pageSize\":0}\n\t\t\t\t        \t\t\t}\n\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\t\"name\":\"sheetNameNo.2\",\n\t\t\t\t\t\t\t\t\"start\":4,\n\t\t\t\t\t\t\t\t\"params\":{\"asd\":\"2020-10-20 10:10:10\"}\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t]\n\t\t\t\t\t}\n\t\t\t\t}\n        \t}\n        ]\n    }\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8014/api/json/rule/end",
@@ -427,7 +426,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"rule\": {\n        \"name\": \"import\",\n        \"actions\": [\n            {\n                \"name\": \"test_import\",\n                \"imports\": {\n                    \"excel\": {\n                    \t\"uploads\":{\n                    \t\t\"aPath\":\"D:/response.xlsx\"\n                    \t},\n                    \t\"add\": {\n                    \t\t\"class\":\"ZsImport2\",\n\t\t\t\t            \"required\":[\"name\"]\n\t\t\t\t        },\n                        \"sheets\": [\n                            {\n                                \"head\": 3,\n                                \"start\": 5,\n                                \"add\": {\n                                \t\"class\":\"ZsImport\",\n\t\t\t\t                    \"uuid\": [\"id\"],\n\t\t\t\t            \t\t\"required\":[\"id\",\"name\"]\n\t\t\t\t                }\n                            },{\n                            \t\"head\": 2,\n                                \"start\": 4\n                            }\n                        ]\n                    }\n                }\n            }\n        ]\n    }\n}"
+					"raw": "{\n    \"rule\": {\n        \"name\": \"import\",\n        \"actions\": [\n            {\n                \"name\": \"test_import\",\n                \"imports\": {\n                    \"excel\": {\n                    \t\"uploads\":{\n                    \t\t\"aPath\":\"D:/response.xlsx\"\n                    \t},\n                    \t\"action\":{\n                    \t\t\"name\":\"asddsa\",\n                    \t\t\"add\": {\n                    \t\t\"class\":\"ZsImport2\",\n\t\t\t\t            \"required\":[\"name\"]\n\t\t\t\t        \t}\n                    \t},\n                        \"sheets\": [\n                            {\n                                \"head\": 3,\n                                \"start\": 5,\n                                \"action\":{\n\t\t                    \t\t\"name\":\"asddsa\",\n\t\t                    \t\t\"add\": {\n                                \t\"class\":\"ZsImport\",\n\t\t\t\t                    \"uuid\": [\"id\"],\n\t\t\t\t            \t\t\"required\":[\"id\",\"name\"]\n\t\t\t\t                \t}\n\t\t                    \t}\n                            },{\n                            \t\"head\": 2,\n                                \"start\": 4\n                            }\n                        ]\n                    }\n                }\n            }\n        ]\n    }\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8014/api/json/rule/start",
@@ -524,7 +523,7 @@
 			"response": []
 		},
 		{
-			"name": "test_ordinary",
+			"name": "test_extend",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -542,10 +541,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"rule\": {\n        \"name\": \"sss\",\n        \"actions\": [\n        \t{\n        \t\t\"name\": \"poAction\",\n        \t\t\"relations\": {\"classNames\":[\"ZsTestPO\"]},\n        \t\t\"ordinary\": {\n        \t\t\t\"room\":\"abc\"\n        \t\t}\n        \t}\n        ]\n    }\n}"
+					"raw": "{\n\t\"params\":{\n\t\t\"quanju\":\"yes\",\n\t\t\"userName\":\"extend\"\n\t},\n    \"rule\": {\n        \"name\": \"extend\",\n        \"actions\": [\n        \t{\n        \t\t\"name\": \"test_extend\",\n        \t\t\"e\": {\n        \t\t\t\"et\":{\n        \t\t\t\t\"bixude\":\"oh ye\"\n        \t\t\t}\n        \t\t}\n        \t}\n        ]\n    }\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8014/api/json/rule/engine/start",
+					"raw": "http://localhost:8014/api/json/rule/start",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -555,9 +554,30 @@
 						"api",
 						"json",
 						"rule",
-						"engine",
 						"start"
 					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "asddsa",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"rt\":{\n\t\t\"asc\":\"aascc\",\n\t\t\"jbr\":\"jjbrr\"\n\t}\n}"
+				},
+				"url": {
+					"raw": ""
 				}
 			},
 			"response": []
