@@ -1,5 +1,5 @@
-edi.rule.abstracts
 edi.rule.annotation
-edi.rule.interfaces.base
-edi.rule.interfaces.processor
+edi.rule.extend.abstracts
+edi.rule.extend.interfaces
+edi.rule.frame.work.interfaces
 edi.rule.model
