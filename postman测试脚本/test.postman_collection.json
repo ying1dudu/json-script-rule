@@ -19,7 +19,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"params\":{\n\t\t\"limit\":\"yes\"\n\t},\n    \"rule\": {\n        \"name\": \"sss\",\n        \"actions\": [\n        \t{\n        \t\t\"name\": \"poAction\",\n        \t\t\"get\": {\n        \t\t\t\"classes\":[\"ZsImport\",\"ZsImport2\"]\n        \t\t}\n        \t}\n        ]\n    }\n}"
+					"raw": "{\r\n    \"rule\": {\r\n    \t\"name\":\"gettest\",\r\n        \"actions\": [\r\n            {\r\n                \"name\": \"asd\",\r\n                \"get\": {\r\n                    \"classes\":[\"ZsTestPO\"],\r\n                    \"ssTp\":[\"ko111\"],\r\n                    \"m\":{\r\n                    \t\"equal\":{\"name\":[\"mmm\"]}\r\n                    }\r\n                }\r\n            }\r\n        ]\r\n    }\r\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8014/api/json/rule/start",
@@ -631,6 +631,39 @@
 						"json",
 						"rule",
 						"end"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getTestNew",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"rule\": {\r\n    \t\"name\":\"gettest\",\r\n        \"actions\": [\r\n            {\r\n                \"name\": \"asd\",\r\n                \"get\": {\r\n                    \"classes\":[\"ZsTestPO\"],\r\n                    \"ssTp\":[\"ko111\"],\r\n                    \"m\":{\r\n                    \t\"equal\":{\"name\":[\"mmm\"]}\r\n                    }\r\n                }\r\n            }\r\n        ]\r\n    }\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8014/api/asdqwe/zxc/test",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8014",
+					"path": [
+						"api",
+						"asdqwe",
+						"zxc",
+						"test"
 					]
 				}
 			},
