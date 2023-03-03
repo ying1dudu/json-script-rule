@@ -1,4 +1,7 @@
 edi.rule.annotation
+edi.rule.extend.adapter
+edi.rule.extend.classes
+edi.rule.extend.classes.abstracts
 edi.rule.extend.interfaces
 edi.rule.model
 edi.rule.work.interfaces
