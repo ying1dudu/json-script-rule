@@ -152,7 +152,7 @@ public class ZsTestSon2 {
                 	},
                 	"isGroupShow":true,
                 	"fields":["ZsTestSon2.id","salary"],
-                    "conditions":{
+                    "condition":{
                     	"where":{
                     		"equal":{"ZsTestPO.id":["5260c8c5-47f2-4890-aff3-6b4fd5fb62f0"]}
                     	}
