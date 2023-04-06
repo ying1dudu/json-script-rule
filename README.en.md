@@ -147,7 +147,7 @@ public class ZsTestSon2 {
             {
                 "name": "test-get",
                 "get": {
-                	"relations":{
+                	"relation":{
                 		"classes":["ZsTestPO","ZsTestSon2"]
                 	},
                 	"isGroupShow":true,
