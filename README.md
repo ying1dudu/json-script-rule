@@ -52,16 +52,18 @@
 **spring框架**
 **lombok插件**
 mysql，postgresql，kingbase，oracle（6,8,10）其jdbc的包以及版本将由开发者主项目中的pom所提供
-#### 安装说明（将jar包引入即可）
-1. 由于目前没有发版到maven远程仓库，因此需要下载jar包并放入本地maven库里，之后在maven中引用该jar包的依赖
-插件地址：https://gitee.com/ying1dudu/json-script-rule-jar.git
+#### 安装说明
+1. 引入依赖，仅此一步即可
 ```
 <dependency>
-  <groupId>edi.zs</groupId>
-  <artifactId>json-script-rule-spring-boot-starter</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+    <groupId>io.github.ying1dudu</groupId>
+    <artifactId>json-script-rule-spring-boot-starter</artifactId>
+    <version>3.2</version>
 </dependency>
-```   
+```
+**提示：**如果maven无法下载则可以直接通过插件地址下载jar包并放入本地maven库里，之后在maven中引用该jar包的依赖
+插件地址：https://gitee.com/ying1dudu/json-script-rule-jar.git
+
 2.  **如果你不使用框架内置的crud功能（包括引用crud插件的导入导出和主子表），那么此步可以跳过**，application（yml和properties等文件类型都可以）中配置了po包路径，这与mybatis的po对象是一个意思，为映射数据库表或视图的java简单对象，属性为location，如下
 ```  
 edi:
