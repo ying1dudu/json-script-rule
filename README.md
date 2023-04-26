@@ -58,10 +58,10 @@ mysql，postgresql，kingbase，oracle（6,8,10）其jdbc的包以及版本将�
 <dependency>
     <groupId>io.github.ying1dudu</groupId>
     <artifactId>json-script-rule-spring-boot-starter</artifactId>
-    <version>3.2</version>
+    <version>3.2.1</version>
 </dependency>
 ```
-**提示：**如果maven无法下载则可以直接通过插件地址下载jar包并放入本地maven库里，之后在maven中引用该jar包的依赖
+**提示：**如果maven无法下载或想体验抢先版本的则可以直接到插件地址下载jar包并放入本地maven库里
 插件地址：https://gitee.com/ying1dudu/json-script-rule-jar.git
 
 2.  **如果你不使用框架内置的crud功能（包括引用crud插件的导入导出和主子表），那么此步可以跳过**，application（yml和properties等文件类型都可以）中配置了po包路径，这与mybatis的po对象是一个意思，为映射数据库表或视图的java简单对象，属性为location，如下
