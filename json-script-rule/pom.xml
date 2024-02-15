@@ -1,0 +1,409 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>io.github.ying1dudu</groupId>
+  <artifactId>json-script-rule</artifactId>
+  <version>4.4</version>
+  <packaging>pom</packaging>
+  
+  <!-- 描述信息(必须要有，否则无法close项目)-->
+  <name>json-script-rule</name>
+  <url>https://github.com/ying1dudu/json-script-rule</url>
+  <description>https://www.jianshu.com/u/9d71fe6dcbde</description>
+  <inceptionYear>2022</inceptionYear>
+  
+  <modules>
+	<module>rule</module>
+  </modules>
+  
+  <properties>
+		<!-- ############### java ############### -->
+		<java.version>1.8</java.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<maven.compiler.encoding>UTF-8</maven.compiler.encoding>
+		<maven.compiler.source>${java.version}</maven.compiler.source>
+		<maven.compiler.target>${java.version}</maven.compiler.target>
+		<maven.compiler.compilerVersion>${java.version}</maven.compiler.compilerVersion>
+		<maven.resources.plugin.version>3.3.0</maven.resources.plugin.version>
+		<maven.compiler.plugin.version>3.11.0</maven.compiler.plugin.version>
+		<maven.jar.plugin.version>3.3.0</maven.jar.plugin.version>
+		<!-- ############### spring ############### -->
+		<springboot.dependencies.version>2.7.10</springboot.dependencies.version>
+		<!-- ############### dataSource ############### -->
+		<oracle6.driver.version>11.2.0.3</oracle6.driver.version>
+		<oracle8.driver.version>19.3.0.0</oracle8.driver.version>
+		<oracle10.driver.version>19.15.0.0.1</oracle10.driver.version>
+		<mysql.connector.version>8.0.33</mysql.connector.version>
+		<postgresql.version>42.7.1</postgresql.version>
+		<kingbase.version>8.6.0</kingbase.version>
+		<!-- ############### orm ############### -->
+		<mybatis.starter.version>2.3.2</mybatis.starter.version>
+		<mybatis.plus.version>3.5.4</mybatis.plus.version>
+	  	<!-- ############### apache ############### -->
+	  	<commons-lang3.version>3.14.0</commons-lang3.version>
+	  	<commons-collections.version>4.4</commons-collections.version>
+		<poi-ooxml.version>5.2.4</poi-ooxml.version>
+		<poi.version>5.2.4</poi.version>
+		<!-- ############### other ############### -->
+		<pagehelper.version>6.1.0</pagehelper.version>
+		<!-- <pagehelper.starter.version>1.2.12</pagehelper.starter.version> -->
+		<poi-tl.version>1.12.1</poi-tl.version>
+		<org.bouncycastle.version>1.77</org.bouncycastle.version>
+		<hutool.crypto.version>5.8.25</hutool.crypto.version>
+		<easy.excel.version>3.1.1</easy.excel.version>
+	</properties>
+	<!-- dependencies依赖会根据dependencyManagement定义的spring-boot-dependencies下载jar包,因此不需要指定版本,如果指定了版本则代表替换dependencies默认的版本 -->
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-autoconfigure</artifactId>
+		</dependency>
+	</dependencies>
+	<!-- dependencyManagement只声明版本依赖关系,并不会下载jar -->
+	<dependencyManagement>
+		<!-- optional=true 表示父项目提供jar依赖版本，如果父类没有则引入依赖，保证有且只有1个jar包 -->
+		<!-- <scope>provided</scope>表示父项目提供jar依赖，如果父项目没有则不依赖，保证0或1个jar包 -->
+		<dependencies>
+			<!-- 自动依赖的另一种实现方式还可以直接继承spring的spring-boot-starter-parent -->
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-dependencies</artifactId>
+				<version>${springboot.dependencies.version}</version>
+				<type>pom</type>
+				<!-- import继承其父pom中dependencyManagement所声明的版本 -->
+				<scope>import</scope>
+				<optional>true</optional>
+			</dependency>
+			<!-- ############### myBatis ############### -->
+			<dependency>
+				<groupId>org.mybatis.spring.boot</groupId>
+				<artifactId>mybatis-spring-boot-starter</artifactId>
+				<version>${mybatis.starter.version}</version>
+				<optional>true</optional>
+			</dependency>
+			<dependency>
+				<groupId>com.baomidou</groupId>
+				<artifactId>mybatis-plus-boot-starter</artifactId>
+				<version>${mybatis.plus.version}</version>
+				<optional>true</optional>
+			</dependency>
+			<!-- ############### database ############### -->
+			<dependency>
+			    <groupId>com.oracle.database.jdbc</groupId>
+			    <artifactId>ojdbc10</artifactId>
+			    <version>${oracle10.driver.version}</version>
+			    <scope>provided</scope>
+			</dependency>
+			<dependency>
+			    <groupId>com.oracle.ojdbc</groupId>
+			    <artifactId>ojdbc8</artifactId>
+			    <version>${oracle8.driver.version}</version>
+			    <scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.oracle</groupId>
+				<artifactId>ojdbc6</artifactId>
+				<version>${oracle6.driver.version}</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>mysql</groupId>
+				<artifactId>mysql-connector-java</artifactId>
+				<version>${mysql.connector.version}</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+			    <groupId>org.postgresql</groupId>
+			    <artifactId>postgresql</artifactId>
+			    <version>${postgresql.version}</version>
+			    <scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.kingbase</groupId>
+				<artifactId>kingbase8</artifactId>
+				<version>${kingbase.version}</version>
+				<scope>provided</scope>
+			</dependency>
+			<!-- ############### apache ############### -->
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-lang3</artifactId>
+				<version>${commons-lang3.version}</version>
+				<optional>true</optional>
+			</dependency>
+			<dependency>
+			    <groupId>org.apache.commons</groupId>
+			    <artifactId>commons-collections4</artifactId>
+			    <version>${commons-collections.version}</version>
+			    <optional>true</optional>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.poi</groupId>
+				<artifactId>poi-ooxml</artifactId>
+				<version>${poi-ooxml.version}</version>
+				<optional>true</optional>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.poi</groupId>
+				<artifactId>poi</artifactId>
+				<version>${poi.version}</version>
+				<optional>true</optional>
+			</dependency>
+			<!-- ############### other ############### -->
+			<dependency>
+	            <groupId>com.github.pagehelper</groupId>
+	            <artifactId>pagehelper</artifactId>
+	            <version>${pagehelper.version}</version>
+	            <optional>true</optional>
+	        </dependency>
+			<dependency>
+			    <groupId>org.bouncycastle</groupId>
+			    <artifactId>bcprov-jdk18on</artifactId>
+			    <version>${org.bouncycastle.version}</version>
+			    <optional>true</optional>
+			</dependency>
+			<dependency>
+			    <groupId>cn.hutool</groupId>
+			    <artifactId>hutool-crypto</artifactId>
+			    <version>${hutool.crypto.version}</version>
+			    <optional>true</optional>
+			</dependency>
+			<!-- com.deepoove中已经存在了poi和poi-ooxml，此时在当前pom中再次定义poi和poi-ooxml父项目依旧只有2个jar，其版本为当前pom中poi和poi-ooxml中定义的版本而非com.deepoove-->
+			<dependency>
+				<groupId>com.deepoove</groupId>
+				<artifactId>poi-tl</artifactId>
+				<version>${poi-tl.version}</version>
+				<scope>provided</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+	<build>
+		<plugins>
+			<!--支持yaml读取pom的参数-->
+			<plugin>
+	            <groupId>org.apache.maven.plugins</groupId>
+	            <artifactId>maven-resources-plugin</artifactId>
+	            <version>${maven.resources.plugin.version}</version>
+	            <configuration>
+	                <encoding>${project.build.sourceEncoding}</encoding>
+	                <delimiters>
+	                	<!-- 如果自定义则需将useDefaultDelimiters设置成false -->
+	                    <delimiter>@</delimiter>
+	                </delimiters>
+	               	 <!-- 如果为true则application.yml中使用默认的${xx}语法获取profile中的select maven的id下面的properties的值-->
+	                <useDefaultDelimiters>true</useDefaultDelimiters>
+	            </configuration>
+	        </plugin>
+	        <plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven.compiler.plugin.version}</version>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+					<encoding>${project.build.sourceEncoding}</encoding>
+				</configuration>
+			</plugin>
+	        <plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<!-- 版本需与spring boot版本一致，否则会报Error injecting: org.springframework.boot.maven.RepackageMojo错误-->
+				<version>${springboot.dependencies.version}</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<!-- 跳过此插件configuration标签下所有配置(不用当前插件打包),如果要打成可以自启动的jar包则去掉此行配置,否则会报jar中没有主清单属性 -->
+					<!-- 如果子pom有maven-jar-plugin打包插件,则会先调用子pom的插件后再调用当前插件,如果子pom中排除了启动类后打包,再调用此插件后会报找不到主函数错误 -->
+					<skip>true</skip>
+					<!-- 打包后会在target以及outputDirectory指定的目录构建出2个相同的jar包 -->
+					<!-- <outputDirectory>D:\jar</outputDirectory> -->
+				</configuration>
+			</plugin>
+			<plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                        <configuration>
+                            <!-- Jdk1.8以后文档的生成校验非常严谨，这里可以关掉文档校验-->
+                            <doclint>none</doclint>
+                            <applyJavadocSecurityFix>false</applyJavadocSecurityFix>
+                            <failOnError>false</failOnError>
+                            <failOnWarnings>false</failOnWarnings>
+							<!--<additionalparam>-Xdoclint:none</additionalparam>-->
+                            <additionalJOption>-Xdoclint:none</additionalJOption>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <extensions>true</extensions>
+                <configuration>
+                    <serverId>sonatype-nexus-snapshots</serverId>
+                    <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
+                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <configuration>
+                    <autoVersionSubmodules>true</autoVersionSubmodules>
+                    <useReleaseProfile>false</useReleaseProfile>
+                    <releaseProfiles>release</releaseProfiles>
+                    <goals>deploy</goals>
+                </configuration>
+            </plugin>
+			<!--gpg sign Plugin 父子工程都需要此步骤，否则父pom会无法生成asc文件而报错，即便是单独使用gpg命令生成也不可以-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <configuration>
+                	<!-- 部署时需要注掉 -->
+                	<skip>true</skip>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+		</plugins>
+	</build>
+	
+	<repositories>
+		<repository>
+			<id>public</id>
+			<name>aliyun nexus</name>
+			<url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+		</repository>
+		<repository>
+			<id>central-repos</id>
+			<name>Central Repository</name>
+			<url>https://repo.maven.apache.org/maven2</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+		</repository>
+		<repository>
+			<id>springsource-repos</id>
+			<name>SpringSource Repository</name>
+			<url>http://repo.spring.io/release/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+		</repository>
+	</repositories>
+	
+	<!--构件的发布-->
+	<distributionManagement>
+		<snapshotRepository>
+			<!--id需要与settings.xml中对应的server的ID一致-->
+            <id>sonatype-nexus-snapshots</id>
+            <url>https://s01.oss.sonatype.org/content/repositories/snapshots/</url>
+        </snapshotRepository>
+        <repository>
+            <id>sonatype-nexus-staging</id>
+            <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+	</distributionManagement>
+	
+	<profiles>  
+        <profile>  
+            <id>tst</id>
+            <properties>
+                <env>tst</env>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <build>
+                <resources>
+                    <resource>
+                        <directory>src/main/resources/tst</directory>
+                        <!-- 指定filtering=true.maven的占位符解析表达式就可以用于它里面的文件 -->
+                        <filtering>true</filtering>
+                    </resource>
+                    <resource>
+                        <directory>src/main/resources</directory>
+                        <filtering>true</filtering>
+                    </resource>
+                </resources>
+            </build>
+        </profile>
+        <profile>  
+            <id>pro</id>  
+            <properties>
+                <env>pro</env>
+            </properties>
+            <build>
+                <resources>
+                    <resource>
+                        <directory>src/main/resources/pro</directory>
+                        <filtering>true</filtering>
+                    </resource>
+                    <resource>
+                        <directory>src/main/resources</directory>
+                        <filtering>true</filtering>
+                    </resource>
+                </resources>
+            </build>
+        </profile> 
+    </profiles>
+    <licenses>
+		<license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+	</licenses>
+	<scm>
+        <tag>master</tag>
+        <url>https://www.jianshu.com/u/9d71fe6dcbde</url>
+        <connection>scm:git:git@github.com:ying1dudu/json-script-rule.git</connection>
+    </scm>
+	<developers>
+		<developer>
+            <name>zhongsheng</name>
+            <email>ying1dudu@163.com</email>
+            <timezone>GMT+8</timezone>
+            <url>https://www.jianshu.com/u/9d71fe6dcbde</url>
+        </developer>
+	</developers>
+	<issueManagement>
+        <system>json script rule</system>
+        <url>https://github.com/ying1dudu/json-script-rule/issues</url>
+    </issueManagement>
+</project>
