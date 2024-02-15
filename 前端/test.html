@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="gbk">
+    <title>json-script-rule</title>
+	<script src="jquery3.7.js"></script>
+	<script src="json-script-rule3.2.5.js"></script>
+</head>
+
+<body>
+	<div id="ddd">
+		<input type="text" jsr-g="group_name_get" jsr-g-c-f="ZsTestPO.name" value="mmm">sssssssss</input>
+		<input type="radio" jsr-g="group_name_get" jsr-g-c-t="eq" jsr-g-c-f="ZsTestPO.remark" jsr-g-c-b="1" jsr-g-c-l="1" value="pkk">abc</input>
+		<input type="radio" jsr-g="group_name_get" jsr-g-c-t="eq" jsr-g-c-f="ZsTestPO.remark" jsr-g-c-b="1" jsr-g-c-l="1" checked value="edd">edf</input>
+		<input type="text" jsr-g="group_name_get" jsr-g-c-f="ZsTestPO.id" jsr-g-c-l="2" value="aa"></input>
+		<input type="text" jsr-g="group_name_get" jsr-g-c-f="ZsTestPO.id" jsr-g-c-t="li" jsr-g-c-b="1" jsr-g-c-l="1" value="bb"></input>
+		<input type="text" jsr-g="group_name_get" jsr-g-c-f="ZsTestPO.id" jsr-g-c-b="2" jsr-g-c-l="1" value="cc"></input>
+		<br>
+		<input type="text" disabled jsr-e="group_name_edit" jsr-e-c-t="eq" jsr-e-c-f="id" value="edd">edf1</input>
+		<input type="text" jsr-e="group_name_edit" jsr-e-s="name" value="edd">edf2</input>
+		<br>
+		<input type="text" jsr-d="group_name_delete" jsr-d-c-t="eq" jsr-d-c-f="id" value="kow"></input>
+		<input type="text" jsr-d="group_name_delete" jsr-d-c-t="eq" jsr-d-c-f="name" value="owk"></input>
+		<br>
+		<button id="myb" type="button" onclick="test_html_label()">test</button>
+		<button id="myb2" type="button" onclick="test_js_body()">test</button>
+	</div>
+    <script>
+		function test_html_label(){
+			//let body = jsr_build_body([{label:'jsr-g',name:'group_name_get',classes:['test.business.po.ZsTestUpdate','ZsTestPO'],type:"or"}]);
+			//let body = jsr_build_body([{plugin:'add',name:'addTest',class:'ZsTestPO',datas:[]}]);
+			//let body = jsr_build_body([{label:'jsr-e',name:'group_name_edit',class:'ZsTestPO'}]);
+			//let body = jsr_build_body([{label:'jsr-d',name:'group_name_delete',class:'ZsTestPO'}]);
+			//jsr_start_body(body);
+			console.log(body);
+		}
+		function test_js_body(){
+			let body = jsr_build_body([{plugin:'get',name:'testList',classes:["ZsTestPO"],relations:{where:{eq:{"ZsTestPO.companyCode":['#&ZsTestBO.companyCode']}}},
+				eq:{name:["asd",'www'],asd:['','sss'],ewq:undefined},li:{remark:["dsa"]},gt:{salary:"32",bonus:88},
+				lt:{createDate:"2023-06-30 12:10:20"},page:{pageNum:1,pageSize:12},isGroupShow:false}]);
+			//let body = jsr_build_body([{plugin:'add',name:'testAdd',class:'ZsTestPO',uuidd:["id"],datas:[{remark:'qwe',name:'dsa'}]}]);
+			//let body = jsr_build_body([{plugin:'edit',name:'testUpdate',class:'ZsTestPO',type:'or',set:{name:"genggai"},equal:{id:['asddsa']}}]);
+			//let body = jsr_build_body([{plugin:'delete',name:'testDelete',class:'ZsTestPO',equal:{id:['asddsa']},isDeleteAll:true}]);
+			console.log(body);
+		}
+		function jsr_result(res){
+			console.log(res);
+		}
+    </script>
+</body>
+</html>
