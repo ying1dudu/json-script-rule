@@ -110,6 +110,7 @@ public class JSRuleGetCustomModel extends JSRuleGet<MyActions>{
 ```
 Finally, you need to define an Action warehouse to load all customized plug-ins. Here you need to add the @Component annotation to the warehouse class to register it as a spring bean. The code is as follows
 ```
+@Data
 @Component
 public class MyActions extends JSRuleAction<MyActions>{
 	public JSRuleGetCustomModel get;
